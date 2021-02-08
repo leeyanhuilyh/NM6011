@@ -27,7 +27,7 @@ Firstly, please download and install [PlatformIO](https://platformio.org/install
 Next, clone this repository into your working directory. For the purpose of this tutorial, assume this is the working directory.
 
 ```
-C:\repo\ESP32-CAM-Vehicle-with-QR-Scanner
+C:\repo\NM6011
 ```
 
 You would also need an [FTDI programmer](https://randomnerdtutorials.com/program-upload-code-esp32-cam/) to upload the code onto the ESP32-CAM. If you have an Arduino Uno, it can also be used as an FTDI programmer. Please follow [this](https://technoreview85.com/how-to-program-esp-32-cam-using-arduino-uno-board/) guide instead
@@ -45,7 +45,21 @@ Choose a name for your project. This would be your working directory from here o
 Extract the files found in the "src" folder into your working directory's "src" folder.
 
 ```
-C:\repo\ESP32-CAM-Vehicle-with-QR-Scanner\src
+C:\repo\NM6011\src
+```
+
+You should then have these files in your "src" folder
+
+```
+app_camera.h
+decode.c
+identify.c
+main.cpp
+qrcode_recognize.h
+quirc_internal.h
+quirc.c
+quirc.h
+version_db.c
 ```
 
 Replace the platformio.ini file in your working directory with the downloaded platformio.ini file.
@@ -55,22 +69,25 @@ Replace the platformio.ini file in your working directory with the downloaded pl
 Go to main.cpp and search for the lines:
 
 ```
-const char* ssid = "XXXXX";
-const char* password = "XXXXX";
+const char* ssid = ...;
+const char* password = ...;
 ```
 
 Replace this with your WiFi Access Point credentials
 
-(Note: the best way to ensure stable connection with your vehicle is to have your vehicle connect to your laptop's hotspot, and have your laptop connect to your mobile phone's hotspot, with the mobile phone having only the mobile data switched on [1]. Don't worry, your mobile data would not be used during the camera stream as no actual connection to the internet is made, as the camera stream still works even if the mobile data is turned off, but you run the risk of losing connection to your vehicle.)
+(Note: the best way to ensure stable connection with your vehicle is to have your vehicle connect to your laptop's hotspot, and have your laptop connect to your mobile phone's hotspot, with the mobile phone having only the mobile data switched on [1]. Don't worry, your mobile data would not be used during the camera stream as no actual connection to the internet is made. You are merely creating a subnet that only you have access to, hence ensuring minimal interference for the vehicle.)
 
 ## Preparing to upload the code
 
 ![](https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-CAM-FTDI-programmer-5V-supply.png?w=750&quality=100&strip=all&ssl=1)
 
-To begin uploading to the ESP32-CAM, you would need an FTDI programmer. Please follow the wiring guide above. 
+To begin uploading to the ESP32-CAM, you would need an FTDI programmer. Please follow the wiring guide above. Take note that a jumper wire has to be connected from IO0 to GND.
 
 ![](https://docs.platformio.org/en/latest/_images/platformio-ide-vscode-build-project.png)
 Once it's wired up properly, build your code first, then upload the code.
+
+![](/doc/imgs/serial.png)
+If there are any issues with the code, connect the ESP32-CAM board via the programmer and use the serial monitor to troubleshoot.
 
 # Hardware
 
@@ -92,7 +109,7 @@ Once it's wired up properly, build your code first, then upload the code.
 8. Secure the motors (with the wires facing inwards) and connect the motor wires with the L298N driver.
 ![](doc/imgs/l298n.jpg)
 9. Prepare the wiring for the battery holder. The + terminal should be able to connect to the +12V terminal on the L298N, and the 5V end on the ESP32-CAM board. Consider using the male end of the jumper wire for the connector and heat shrink the 2 wires to secure the connection.
-![](doc/imgs/triple.jpg)
+![](doc/imgs/shrink.jpg)
 10. Leave about 3cm of space between the L298N and affix the battery holder.
 ![](doc/imgs/3cm.jpg)
 11. Connect the battery holder with the L298N
@@ -136,3 +153,7 @@ Try moving the vehicle around with the controls and scanning a few QR codes [2].
 [1] The rationale for this is the ESP32-CAM always assigns a new IP address to the ESP32-CAM upon connection, but we need a static IP address in order to control the ESP32-CAM board consistently, and without hassle. Only a PC hotspot is able to achieve this. Mobile phone hotspots do not offer the feature of assigning a static IP address.
 
 [2] The QR scanner only works on specially encrypted QR codes. Scanning normal QR codes would only produce gibberish.
+
+To fix "Brownout detector was triggered", connect the 5V on the ESP32-CAM to the batteries, instead of the programmer. This sometimes happen because there would be a spike in power draw from the board when it attempts to connect to the WiFi access point. The power from your laptop might not be sufficient for the board, hence triggering the board's brownout detector.
+
+If the HTML page does not load, but your board is able to connect to the WiFi access point, try the recommended hotspot setup in the section "Editing WiFi Settings". If it still does not work, try closing your browser and opening a new browser window just to access the board's IP address. You may also try other browsers.

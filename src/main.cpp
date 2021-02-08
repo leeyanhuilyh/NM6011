@@ -50,8 +50,8 @@ static const char *data_type_str(int dt)
 
 using namespace std;
 
-const char* ssid = "Challence";
-const char* password = "0001923880";
+const char* ssid = "XXXXXXXX";
+const char* password = "passwordhere";
 
 camera_fb_t *fb = NULL;  
 static camera_config_t camera_config;

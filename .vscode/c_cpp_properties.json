@@ -8,8 +8,8 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "c:/Users/metal/Documents/repo/ESP32-CAM-Vehicle-with-QR-Scanner/include",
-                "c:/Users/metal/Documents/repo/ESP32-CAM-Vehicle-with-QR-Scanner/src",
+                "c:/Users/metal/Documents/repo/NM6011/include",
+                "c:/Users/metal/Documents/repo/NM6011/src",
                 "C:/Users/metal/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                 "C:/Users/metal/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/config",
                 "C:/Users/metal/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/app_trace",
@@ -101,8 +101,8 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "c:/Users/metal/Documents/repo/ESP32-CAM-Vehicle-with-QR-Scanner/include",
-                    "c:/Users/metal/Documents/repo/ESP32-CAM-Vehicle-with-QR-Scanner/src",
+                    "c:/Users/metal/Documents/repo/NM6011/include",
+                    "c:/Users/metal/Documents/repo/NM6011/src",
                     "C:/Users/metal/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                     "C:/Users/metal/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/config",
                     "C:/Users/metal/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/app_trace",
