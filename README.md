@@ -8,7 +8,7 @@ This repository will contain the the files that need to be uploaded to the ESP32
 2. 2 x Wheel + Motor (w/ screws and nuts)
 3. 1 x Front/Castor Wheel
 4. 1 x Battery Holder
-5. 4 x Rechargeable AA Batteries
+5. 2 x Rechargeable AA Batteries
 6. 1 x ESP32-CAM
 7. 1 x FTDI Programmer (or Arduino Uno)
 8. 1 x Switch
